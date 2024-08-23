@@ -7,17 +7,20 @@ add.addEventListener('click',function(event){
     event.preventDefault();
     
 const task =document.querySelector('#task').value;
-const newtask= '<input type="checkbox" name="task" id="task${task}"><label class="content" for="task${task} d_task${task}">' +task+ '</label><input class="icon" id="d_task${task}" type="image" src="https://cdn-icons-png.flaticon.com/512/3405/3405244.png" alt="Delete"><br>';
-document.querySelector('#new_task').innerHTML += newtask;
 
+const tasklist= document.querySelector('#new_task');
+const newtask=document.createElement('div');
+newtask.innerHTML='<input type="checkbox" name="task"><label class="content">' +task+ '</label><input class="icon" class="delete" type="image" src="https://cdn-icons-png.flaticon.com/512/3405/3405244.png" alt="Delete"><br>';
+
+tasklist.appendChild(newtask);
 document.querySelector('#task').value='';
 
-const d=document.querySelector('#d_task${task}');
+newtask.querySelector('.delete');
 
-d.addEventListener('click',function(event){
+newtask.querySelector('.delete').addEventListener('click',function(event){
     event.preventDefault();
     
-document.querySelector('#task${task}').parentElement.remove();
+    tasklist.removeChild(newtask);
 
 });
 });
